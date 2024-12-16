@@ -47,13 +47,13 @@ export default function Home() {
         />
       )}
 
-      {user && user.following.length == 0 && (
+      {user && user.following.length === 0 && (
         <>
           <FollowSuggestions />
         </>
       )}
 
-      {user && user.following.length != 0 && (
+      {user && user.following.length !== 0 && (
         <>
           <div className="homefeed-container">
             {posts.map((post, index) => (

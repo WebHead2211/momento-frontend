@@ -1,6 +1,6 @@
 import "../styles/register.css";
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useRegister } from "../hooks/useRegister";
 import { useAuthContext } from "../hooks/useAuthContext";
 

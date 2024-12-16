@@ -86,7 +86,7 @@ export default function PostStats({
           <ul>
             {post && (
               <>
-                {post.likes.length == 1 ? (
+                {post.likes.length === 1 ? (
                   <>
                     <li>1 like</li>
                   </>

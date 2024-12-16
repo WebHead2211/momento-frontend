@@ -14,37 +14,38 @@ export default function User() {
   const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [type, setType] = useState(null);
 
-  const getUser = async () => {
-    try {
-      const response = await axios.get(`/api/v1/users/getUsername/${username}`);
-      setUser(response.data.data);
-      if (!currentUser) {
-        setIsCurrentUser(false);
-        setFollows(false);
-      } else {
-        if (response.data.data._id === currentUser._id) {
-          setIsCurrentUser(true);
-        } else {
-          setIsCurrentUser(false);
-        }
-        if (currentUser.following.includes(response.data.data._id)) {
-          setFollows(true);
-        } else {
-          setFollows(false);
-        }
-      }
-    } catch (error) {
-      navigate("/error", { state: { error: error.response.data.error } });
-    }
-  };
-
   useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get(
+          `/api/v1/users/getUsername/${username}`
+        );
+        setUser(response.data.data);
+        if (!currentUser) {
+          setIsCurrentUser(false);
+          setFollows(false);
+        } else {
+          if (response.data.data._id === currentUser._id) {
+            setIsCurrentUser(true);
+          } else {
+            setIsCurrentUser(false);
+          }
+          if (currentUser.following.includes(response.data.data._id)) {
+            setFollows(true);
+          } else {
+            setFollows(false);
+          }
+        }
+      } catch (error) {
+        navigate("/error", { state: { error: error.response.data.error } });
+      }
+    };
     if (username) {
       setType("");
       setUser(null);
       getUser();
     }
-  }, [username, currentUser]);
+  }, [username, currentUser, navigate]);
 
   const [follows, setFollows] = useState(false);
 
@@ -54,12 +55,9 @@ export default function User() {
     } else {
       if (user) {
         try {
-          await axios.post(
-            `/api/v1/users/toggleFollow/${user.username}`,
-            {
-              withCredentials: true,
-            }
-          );
+          await axios.post(`/api/v1/users/toggleFollow/${user.username}`, {
+            withCredentials: true,
+          });
           setFollows((prev) => !prev);
           navigate(0);
         } catch (error) {

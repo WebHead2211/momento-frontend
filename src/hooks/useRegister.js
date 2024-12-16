@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext.js";
-import { useHomeContext } from "./useHomeContext.js";
 import { useNavigate } from "react-router-dom";
 
 export const useRegister = () => {

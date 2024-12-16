@@ -17,7 +17,7 @@ export default function FollowSuggestions() {
       }
     };
     getResults();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="follow-suggestions-container">

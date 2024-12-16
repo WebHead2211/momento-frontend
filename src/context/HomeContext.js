@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 export const HomeContext = createContext();
@@ -7,7 +7,7 @@ export const HomeContext = createContext();
 export const homeReducer = (state, action) => {
   switch (action.type) {
     case "POSTS":
-      if (action.payload.length == 0) {
+      if (action.payload.length === 0) {
         return { ...state, end: true };
       }
       if (!action.payload.includes(state.posts[state.posts.length - 1])) {
@@ -36,7 +36,7 @@ export const HomeContextProvider = ({ children }) => {
     page: 0,
     end: false,
   });
-  const [fetched, setFetched] = useState(false);
+  // const [fetched, setFetched] = useState(false);
   const { user } = useAuthContext();
 
   // console.log("Home context state updated: ", state);
@@ -52,7 +52,7 @@ export const HomeContextProvider = ({ children }) => {
   };
   useEffect(() => {
     dispatch({ type: "REFRESH" });
-    if (state.posts.length == 0) {
+    if (state.posts.length === 0) {
       if (user) {
         getHomeFeed();
       }
@@ -65,9 +65,9 @@ export const HomeContextProvider = ({ children }) => {
     }
   }, [state.page]);
 
-  useEffect(() => {
-    setFetched(state.end);
-  }, [state.end]);
+  // useEffect(() => {
+  //   setFetched(state.end);
+  // }, [state.end]);
 
   // useEffect(() => {
   //   console.log("POSTS LOADER", postsLoader);

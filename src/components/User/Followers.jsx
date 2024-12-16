@@ -7,7 +7,7 @@ export default function Followers({ user, type, setType }) {
   const [list, setList] = useState([]);
   useEffect(() => {
     const getList = async () => {
-      if (type == "followers") {
+      if (type === "followers") {
         const response = await axios.get(`/api/v1/users/getUser/${user._id}`);
         response.data.data.followers.forEach(async (item) => {
           const follower = await axios.get(`/api/v1/users/getUser/${item}`);
@@ -28,7 +28,7 @@ export default function Followers({ user, type, setType }) {
     if (user) {
       getList();
     }
-  }, [user]);
+  }, [user, type]);
   return (
     <div className="followers-bg">
       <div className="followers-list">
@@ -40,11 +40,11 @@ export default function Followers({ user, type, setType }) {
         >
           <p>X</p>
         </button>
-        <h1>{type == "followers" ? "Followers" : "Following"}</h1>
+        <h1>{type === "followers" ? "Followers" : "Following"}</h1>
         <ul>
-          {type == "followers" ? (
+          {type === "followers" ? (
             <>
-              {list.length == 0 && (
+              {list.length === 0 && (
                 <>
                   <p>This user has no followers</p>
                 </>
@@ -52,7 +52,7 @@ export default function Followers({ user, type, setType }) {
             </>
           ) : (
             <>
-              {list.length == 0 && (
+              {list.length === 0 && (
                 <>
                   <p>This user follows no one</p>
                 </>

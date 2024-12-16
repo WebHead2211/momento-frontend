@@ -55,7 +55,7 @@ export default function UserPosts({ user }) {
       <div className="user-posts">
         <ul className="tab-buttons">
           <li
-            className={active == "posts" ? "active" : undefined}
+            className={active === "posts" ? "active" : undefined}
             onClick={() => {
               setActive("posts");
             }}
@@ -64,7 +64,7 @@ export default function UserPosts({ user }) {
             <h3>Posts</h3>
           </li>
           <li
-            className={active == "liked" ? "active" : undefined}
+            className={active === "liked" ? "active" : undefined}
             onClick={() => {
               setActive("liked");
             }}
@@ -74,9 +74,9 @@ export default function UserPosts({ user }) {
           </li>
         </ul>
         <div className="user-posts-container">
-          {active == "posts" && (
+          {active === "posts" && (
             <>
-              {user.posts.length == 0 ? (
+              {user.posts.length === 0 ? (
                 <p className="empty">This user doesn't have any posts!</p>
               ) : (
                 <>
@@ -97,9 +97,9 @@ export default function UserPosts({ user }) {
               )}
             </>
           )}
-          {active == "liked" && (
+          {active === "liked" && (
             <>
-              {user.likedPosts.length == 0 ? (
+              {user.likedPosts.length === 0 ? (
                 <p className="empty">This user hasn't liked any posts!</p>
               ) : (
                 <>
