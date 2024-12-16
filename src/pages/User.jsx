@@ -18,7 +18,7 @@ export default function User() {
     const getUser = async () => {
       try {
         const response = await axios.get(
-          `/api/v1/users/getUsername/${username}`
+          `https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUsername/${username}`
         );
         setUser(response.data.data);
         if (!currentUser) {
@@ -55,7 +55,7 @@ export default function User() {
     } else {
       if (user) {
         try {
-          await axios.post(`/api/v1/users/toggleFollow/${user.username}`, {
+          await axios.post(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/toggleFollow/${user.username}`, {
             withCredentials: true,
           });
           setFollows((prev) => !prev);

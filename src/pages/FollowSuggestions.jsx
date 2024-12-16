@@ -9,7 +9,7 @@ export default function FollowSuggestions() {
   useEffect(() => {
     const getResults = async () => {
       try {
-        const response = await axios.get("/api/v1/users/suggestions");
+        const response = await axios.get("https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/suggestions");
         setSuggestions(response.data.data);
       } catch (error) {
         console.log(error);

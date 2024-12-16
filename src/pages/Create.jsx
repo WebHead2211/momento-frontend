@@ -31,7 +31,7 @@ export default function Create() {
     data.append("postImage", postImage);
 
     try {
-      const response = await axios.post("/api/v1/posts/post", data, {
+      const response = await axios.post("https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/post", data, {
         withCredentials: true,
       });
       setSuccess(true);

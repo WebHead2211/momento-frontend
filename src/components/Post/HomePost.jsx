@@ -17,7 +17,7 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
   useEffect(() => {
     const getPostUser = async () => {
       try {
-        const response = await axios.get(`/api/v1/users/getUser/${post.user}`);
+        const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${post.user}`);
         setPostUser(response.data.data);
       } catch (error) {
         navigate("/error", { state: { error: error.response.data.error } });
@@ -41,7 +41,7 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
 
   //Set the 'like' value if the post is present/not present in current user's liked list
   const checkCurrentUserLikes = async (id) => {
-    const response = await axios.get(`/api/v1/users/getUser/${id}`);
+    const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${id}`);
     if (response.data.data.likedPosts.includes(post._id)) {
       setLike(true);
     } else {
@@ -51,13 +51,13 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
 
   //Get the current post updated version from db
   const getCurrentPost = async (id) => {
-    const response = await axios.get(`/api/v1/posts/getPost/${id}`);
+    const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/getPost/${id}`);
     setCurrentPost(response.data.data);
   };
 
   //Toggle like from current user to current post
   const toggleLike = async () => {
-    await axios.post(`/api/v1/users/toggleLike/${post._id}`, {
+    await axios.post(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/toggleLike/${post._id}`, {
       withCredentials: true,
     });
     checkCurrentUserLikes(user._id);

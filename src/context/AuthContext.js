@@ -24,7 +24,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const findUser = async () => {
       try {
-        const response = await axios.get("/api/v1/users/currentUser", {
+        const response = await axios.get("https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/currentUser", {
           withCredentials: true,
         });
         console.log("Current User: ", response.data.user);

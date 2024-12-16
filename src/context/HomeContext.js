@@ -42,7 +42,7 @@ export const HomeContextProvider = ({ children }) => {
   // console.log("Home context state updated: ", state);
   const getHomeFeed = async () => {
     try {
-      const response = await axios.get(`/api/v1/posts/homeFeed/${state.page}`, {
+      const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/homeFeed/${state.page}`, {
         withCredentials: true,
       });
       dispatch({ type: "POSTS", payload: response.data.data });

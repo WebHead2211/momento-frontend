@@ -13,7 +13,7 @@ export const useRegister = () => {
     setLoading(true);
     setMessage(null);
     try {
-      const response = await axios.post("/api/v1/users/register", data, {
+      const response = await axios.post("https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/register", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -36,7 +36,7 @@ export const useRegister = () => {
 
     try {
       const response = await axios.post(
-        "/api/v1/users/login",
+        "https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/login",
         {
           loginData,
           password,
@@ -62,7 +62,7 @@ export const useRegister = () => {
     setLoading(true);
     setMessage(null);
     try {
-      const response = await axios.patch("/api/v1/users/editUser", data, {
+      const response = await axios.patch("https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/editUser", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

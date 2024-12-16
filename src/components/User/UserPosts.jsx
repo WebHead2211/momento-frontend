@@ -16,7 +16,7 @@ export default function UserPosts({ user }) {
   useEffect(() => {
     const postList = currentUser.posts;
     postList.forEach(async (post) => {
-      const response = await axios.get(`/api/v1/posts/getPost/${post}`);
+      const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/getPost/${post}`);
       setPosts((prev) => {
         return [...prev, response.data.data];
       });
@@ -25,7 +25,7 @@ export default function UserPosts({ user }) {
 
     const likedList = currentUser.likedPosts;
     likedList.forEach(async (post) => {
-      const response = await axios.get(`/api/v1/posts/getPost/${post}`);
+      const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/getPost/${post}`);
       setLiked((prev) => {
         return [...prev, response.data.data];
       });

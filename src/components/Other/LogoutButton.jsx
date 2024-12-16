@@ -9,7 +9,7 @@ export default function LogoutButton() {
   const { dispatch: homeDispatch } = useHomeContext();
   const handleLogout = async () => {
     try {
-      const response = await axios.post("/api/v1/users/logout", {
+      const response = await axios.post("https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/logout", {
         withCredentials: true,
       });
       dispatch({ type: "LOGOUT" });

@@ -21,7 +21,7 @@ export default function Comment({
   useEffect(() => {
     const getCommenter = async () => {
       const response = await axios.get(
-        `/api/v1/users/getUser/${comment.commenter}`
+        `https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${comment.commenter}`
       );
       setCommenter(response.data.data);
     };
@@ -41,7 +41,7 @@ export default function Comment({
   const deleteComment = async () => {
     try {
       const response = await axios.delete(
-        `/api/v1/posts/deleteComment/${comment._id}`,
+        `https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/deleteComment/${comment._id}`,
         {
           withCredentials: true,
         }

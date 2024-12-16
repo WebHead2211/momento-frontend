@@ -11,7 +11,7 @@ export const AddComment = forwardRef(function AddComment(props, ref) {
     try {
       e.preventDefault();
       await axios.post(
-        "/api/v1/posts/newComment",
+        "https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/newComment",
         {
           postId: post._id,
           commentText: commentText,

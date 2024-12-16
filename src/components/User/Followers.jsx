@@ -8,17 +8,17 @@ export default function Followers({ user, type, setType }) {
   useEffect(() => {
     const getList = async () => {
       if (type === "followers") {
-        const response = await axios.get(`/api/v1/users/getUser/${user._id}`);
+        const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${user._id}`);
         response.data.data.followers.forEach(async (item) => {
-          const follower = await axios.get(`/api/v1/users/getUser/${item}`);
+          const follower = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${item}`);
           setList((prev) => {
             return [...prev, follower.data.data];
           });
         });
       } else {
-        const response = await axios.get(`/api/v1/users/getUser/${user._id}`);
+        const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${user._id}`);
         response.data.data.following.forEach(async (item) => {
-          const follower = await axios.get(`/api/v1/users/getUser/${item}`);
+          const follower = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${item}`);
           setList((prev) => {
             return [...prev, follower.data.data];
           });

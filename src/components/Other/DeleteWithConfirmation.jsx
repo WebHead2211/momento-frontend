@@ -51,7 +51,7 @@ const DeleteWithConfirmation = ({ id }) => {
 
   const handleConfirmDelete = async (e) => {
     e.stopPropagation();
-    await axios.delete(`/api/v1/posts/deletePost/${id}`);
+    await axios.delete(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/deletePost/${id}`);
     setPopupOpen(false);
     navigate(0);
   };

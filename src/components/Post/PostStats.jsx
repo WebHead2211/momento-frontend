@@ -16,7 +16,7 @@ export default function PostStats({
 
   useEffect(() => {
     const initialLike = async () => {
-      const response = await axios.get(`/api/v1/users/getUser/${user._id}`);
+      const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${user._id}`);
       if (response.data.data.likedPosts.includes(post._id)) {
         setLike(true);
       } else {
@@ -27,7 +27,7 @@ export default function PostStats({
   }, [like]);
 
   const toggleLike = async () => {
-    await axios.post(`/api/v1/users/toggleLike/${post._id}`, {
+    await axios.post(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/toggleLike/${post._id}`, {
       withCredentials: true,
     });
     getCurrentUser(user._id);
@@ -35,7 +35,7 @@ export default function PostStats({
   };
 
   const getCurrentUser = async (id) => {
-    const response = await axios.get(`/api/v1/users/getUser/${id}`);
+    const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${id}`);
     if (response.data.data.likedPosts.includes(currentPost._id)) {
       setLike(true);
     } else {
@@ -44,7 +44,7 @@ export default function PostStats({
   };
 
   const getCurrentPost = async (id) => {
-    const response = await axios.get(`/api/v1/posts/getPost/${id}`);
+    const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/getPost/${id}`);
     setPost(response.data.data);
   };
 
