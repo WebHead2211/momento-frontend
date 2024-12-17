@@ -4,6 +4,7 @@ import axios from "axios";
 import Comment from "./Comment";
 import PostStats from "./PostStats";
 import "../../styles/PostPreview.css";
+import { backendUrl } from "../../constants";
 
 export default function PostPreview({
   previewPost,
@@ -53,7 +54,7 @@ export default function PostPreview({
   const commentList = useRef();
   const getComments = async () => {
     const response = await axios.get(
-      `https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/getComments/${previewPost.post._id}/${page}`
+      `${backendUrl}/api/v1/posts/getComments/${previewPost.post._id}/${page}`
     );
     if (response.data.data.length > 0) {
       setComments((prev) => {
@@ -71,7 +72,7 @@ export default function PostPreview({
 
   const getPostUser = async () => {
     const response = await axios.get(
-      `https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${previewPost.post.user}`
+      `${backendUrl}/api/v1/users/getUser/${previewPost.post.user}`
     );
     setUser(response.data.data);
   };
@@ -84,7 +85,7 @@ export default function PostPreview({
     try {
       e.preventDefault();
       const response = await axios.post(
-        "https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/newComment",
+        `${backendUrl}/api/v1/posts/newComment`,
         {
           postId: previewPost.post._id,
           commentText: commentText,
@@ -120,7 +121,7 @@ export default function PostPreview({
                   setPosts([]);
                   setLiked([]);
                   const response = await axios.get(
-                    `https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${previewPost.user._id}`
+                    `${backendUrl}/api/v1/users/getUser/${previewPost.user._id}`
                   );
                   setCurrentUser(response.data.data);
                 }

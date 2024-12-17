@@ -4,6 +4,7 @@ import "../styles/register.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
+import { backendUrl } from "../constants";
 
 const EditUser = () => {
   let navigate = useNavigate();
@@ -50,7 +51,7 @@ const EditUser = () => {
 
     await edit(data);
 
-    const updatedUser = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${user._id}`);
+    const updatedUser = await axios.get(`${backendUrl}/api/v1/users/getUser/${user._id}`);
 
     if (message) {
       setFormData({

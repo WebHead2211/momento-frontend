@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { backendUrl } from "../constants";
 
 export default function FollowSuggestions() {
   const [suggestions, setSuggestions] = useState([]);
@@ -9,7 +10,7 @@ export default function FollowSuggestions() {
   useEffect(() => {
     const getResults = async () => {
       try {
-        const response = await axios.get("https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/suggestions");
+        const response = await axios.get(`${backendUrl}/api/v1/users/suggestions`);
         setSuggestions(response.data.data);
       } catch (error) {
         console.log(error);

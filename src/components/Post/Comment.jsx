@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/Comment.css";
+import { backendUrl } from "../../constants";
 
 export default function Comment({
   comment,
@@ -21,7 +22,7 @@ export default function Comment({
   useEffect(() => {
     const getCommenter = async () => {
       const response = await axios.get(
-        `https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${comment.commenter}`
+        `${backendUrl}/api/v1/users/getUser/${comment.commenter}`
       );
       setCommenter(response.data.data);
     };
@@ -41,7 +42,7 @@ export default function Comment({
   const deleteComment = async () => {
     try {
       const response = await axios.delete(
-        `https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/deleteComment/${comment._id}`,
+        `${backendUrl}/api/v1/posts/deleteComment/${comment._id}`,
         {
           withCredentials: true,
         }

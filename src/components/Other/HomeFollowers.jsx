@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { backendUrl } from "../../constants";
 
 export default function HomeFollowers() {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const getUsers = async () => {
-      const response = await axios.get("https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUpdatedFollowers", {
+      const response = await axios.get(`${backendUrl}/api/v1/users/getUpdatedFollowers`, {
         withCredentials: true,
       });
       setUsers(response.data.data);

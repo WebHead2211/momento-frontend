@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import axios from "axios";
+import { backendUrl } from "../../constants";
 
 export default function PostStats({
   currentPost,
@@ -44,7 +45,7 @@ export default function PostStats({
   };
 
   const getCurrentPost = async (id) => {
-    const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/getPost/${id}`);
+    const response = await axios.get(`${backendUrl}/api/v1/posts/getPost/${id}`);
     setPost(response.data.data);
   };
 

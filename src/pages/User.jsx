@@ -5,6 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import UserPosts from "../components/User/UserPosts";
 import "../styles/User.css";
 import Followers from "../components/User/Followers";
+import { backendUrl } from "../constants";
 
 export default function User() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function User() {
     const getUser = async () => {
       try {
         const response = await axios.get(
-          `https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUsername/${username}`
+          `${backendUrl}/api/v1/users/getUsername/${username}`
         );
         setUser(response.data.data);
         if (!currentUser) {
@@ -55,7 +56,7 @@ export default function User() {
     } else {
       if (user) {
         try {
-          await axios.post(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/toggleFollow/${user.username}`, {
+          await axios.post(`${backendUrl}/api/v1/users/toggleFollow/${user.username}`, {
             withCredentials: true,
           });
           setFollows((prev) => !prev);

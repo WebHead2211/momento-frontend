@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "../../styles/DeleteWithConfirmation.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { backendUrl } from "../../constants";
 
 const ConfirmationPopup = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
@@ -51,7 +52,7 @@ const DeleteWithConfirmation = ({ id }) => {
 
   const handleConfirmDelete = async (e) => {
     e.stopPropagation();
-    await axios.delete(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/deletePost/${id}`);
+    await axios.delete(`${backendUrl}/api/v1/posts/deletePost/${id}`);
     setPopupOpen(false);
     navigate(0);
   };

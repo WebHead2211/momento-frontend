@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { backendUrl } from "../constants";
 
 export default function Create() {
   const [message, setMessage] = useState();
@@ -31,7 +32,7 @@ export default function Create() {
     data.append("postImage", postImage);
 
     try {
-      const response = await axios.post("https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/post", data, {
+      const response = await axios.post(`${backendUrl}/api/v1/posts/post`, data, {
         withCredentials: true,
       });
       setSuccess(true);

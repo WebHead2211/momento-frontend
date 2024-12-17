@@ -2,6 +2,7 @@ import axios from "axios";
 import { forwardRef, useState } from "react";
 import "../../styles/AddComment.css";
 import { useNavigate } from "react-router-dom";
+import { backendUrl } from "../../constants";
 
 export const AddComment = forwardRef(function AddComment(props, ref) {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export const AddComment = forwardRef(function AddComment(props, ref) {
     try {
       e.preventDefault();
       await axios.post(
-        "https://momento-app-f7ho6.ondigitalocean.app/api/v1/posts/newComment",
+        `${backendUrl}/api/v1/posts/newComment`,
         {
           postId: post._id,
           commentText: commentText,

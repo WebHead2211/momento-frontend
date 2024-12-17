@@ -2,23 +2,32 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Followers.css";
+import { backendUrl } from "../../constants";
 
 export default function Followers({ user, type, setType }) {
   const [list, setList] = useState([]);
   useEffect(() => {
     const getList = async () => {
       if (type === "followers") {
-        const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${user._id}`);
+        const response = await axios.get(
+          `${backendUrl}/api/v1/users/getUser/${user._id}`
+        );
         response.data.data.followers.forEach(async (item) => {
-          const follower = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${item}`);
+          const follower = await axios.get(
+            `${backendUrl}/api/v1/users/getUser/${item}`
+          );
           setList((prev) => {
             return [...prev, follower.data.data];
           });
         });
       } else {
-        const response = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${user._id}`);
+        const response = await axios.get(
+          `${backendUrl}/api/v1/users/getUser/${user._id}`
+        );
         response.data.data.following.forEach(async (item) => {
-          const follower = await axios.get(`https://momento-app-f7ho6.ondigitalocean.app/api/v1/users/getUser/${item}`);
+          const follower = await axios.get(
+            `${backendUrl}/api/v1/users/getUser/${item}`
+          );
           setList((prev) => {
             return [...prev, follower.data.data];
           });
