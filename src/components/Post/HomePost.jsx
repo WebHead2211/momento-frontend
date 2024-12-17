@@ -75,9 +75,15 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
     // await axios.post(`${backendUrl}/api/v1/users/toggleLike/${post._id}`, {
     //   withCredentials: true,
     // });
+    const response = await axios.get(
+      `${backendUrl}/api/v1/users/getCurrentUser`,
+      {
+        withCredentials: true,
+      }
+    );
     // checkCurrentUserLikes(user._id);
     // getCurrentPost(post._id);
-    console.log("COMMENT LIKED");
+    console.log("COMMENT LIKED BY USER: ", response.data);
   };
 
   useEffect(() => {
