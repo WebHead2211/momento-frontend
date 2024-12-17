@@ -14,6 +14,14 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
   const [like, setLike] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
 
+  const { user: currentUser } = useAuthContext();
+
+  useEffect(() => {
+    if (currentUser) {
+      console.log("USER IS LOOGED IN: ", currentUser);
+    }
+  }, [user]);
+
   //Get the user of this post
   useEffect(() => {
     const getPostUser = async () => {
