@@ -44,7 +44,7 @@ export default function User() {
     };
     if (username) {
       setType("");
-      setUser(null);
+      // setUser(null);
       getUser();
     }
   }, [username, currentUser, navigate]);
@@ -63,7 +63,7 @@ export default function User() {
               withCredentials: true,
             }
           );
-          setFollows((prev) => !prev);
+          // setFollows((prev) => !prev);
           navigate(0);
         } catch (error) {
           navigate("/error", { state: { error: error.response.data.error } });
@@ -94,7 +94,8 @@ export default function User() {
       withCredentials: true,
     });
     setPopupOpen(false);
-    navigate(0);
+    // navigate(0);
+    navigate(`/user/${username}`);
   };
 
   return (

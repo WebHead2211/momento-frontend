@@ -31,11 +31,25 @@ header {
 
   i {
     font-size: 24px;
+
+    span {
+      display: none;
+    }
+
+    span.show {
+      display: initial;
+      font-size: 12px;
+      background-color: red;
+      padding: 4px 2px;
+      position: absolute;
+      left: 35px;
+      top: 5px;
+    }
   }
 
   li {
     a,
-    .btn-logout {
+    .btn-logout, .btn-noti {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -46,7 +60,7 @@ header {
       margin: 0;
     }
 
-    div:nth-of-type(1):not(.btn-logout) {
+    div:nth-of-type(1):not(.btn-logout):not(.btn-noti) {
       width: 50px;
       height: 50px;
       display: flex;

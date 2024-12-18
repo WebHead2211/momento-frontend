@@ -16,12 +16,6 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
 
   const { user: currentUser } = useAuthContext();
 
-  useEffect(() => {
-    if (currentUser) {
-      console.log("USER IS LOOGED IN: ", currentUser);
-    }
-  }, [user]);
-
   //Get the user of this post
   useEffect(() => {
     const getPostUser = async () => {
@@ -105,6 +99,23 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
 
     lastTapTime = currentTime;
   };
+
+  const handleDoubleTap = () => {
+    const currentTime = Date.now();
+    const tapGap = currentTime - lastTapTime;
+
+    if (tapGap < 300 && tapGap > 0) {
+      clearTimeout(singleTapTimeout);
+      toggleLike();
+    } else {
+      singleTapTimeout = setTimeout(() => {
+        // setPreviewPost({ post: currentPost, user: postUser });
+        return;
+      }, 300);
+    }
+
+    lastTapTime = currentTime;
+  };
   return (
     <>
       {postUser && (
@@ -122,6 +133,20 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
                   <h3>{date}</h3>
                 </div>
               </>
+            </div>
+            <div className="image-mobile">
+              <img
+                src={post.url}
+                alt=""
+                onDoubleClick={() => {
+                  if (clickTimer) {
+                    clearTimeout(clickTimer);
+                    clickTimer = null;
+                  }
+                  toggleLike();
+                }}
+                onTouchEnd={handleDoubleTap}
+              />
             </div>
             <div className="image">
               <img

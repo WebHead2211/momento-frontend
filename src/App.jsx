@@ -3,6 +3,7 @@ import { useHomeContext } from "./hooks/useHomeContext";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider,
 } from "react-router-dom";
@@ -23,29 +24,10 @@ import Search from "./pages/Search";
 import RootLayout from "./layouts/RootLayout";
 import NotFound from "./pages/NotFound";
 import CustomError from "./pages/CustomError";
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <Route path="/" element={<RootLayout />} errorElement={<CustomError />}>
-        <Route index element={<Home />} />
-        <Route path="/error" element={<CustomError />} />
-        <Route path="search" element={<Search />} />
-        <Route path="new" element={<Create />} />
-        <Route path="/user/:username" element={<User />} />
-        <Route path="/editUser" element={<EditUser />} />
-        <Route path="/accounts">
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-        </Route>
-
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </>
-  )
-);
+import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
+  const { user } = useAuthContext();
   const { dispatch: homeDispatch } = useHomeContext();
   const handleScroll = () => {
     const bottom =
@@ -66,6 +48,28 @@ function App() {
     };
   }, []);
 
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<RootLayout />} errorElement={<CustomError />}>
+          <Route index element={<Home />} />
+          <Route path="/error" element={<CustomError />} />
+          <Route path="search" element={<Search />} />
+          <Route path="new" element={<Create />} />
+          <Route path="/user/:username" element={<User />} />
+          <Route path="/editUser" element={<EditUser />} />
+          <Route path="/accounts">
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </>
+    )
+  );
+
+  // return <RouterProvider router={user ? router : unauthorizedRouter} />;
   return <RouterProvider router={router} />;
 }
 

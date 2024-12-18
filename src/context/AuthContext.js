@@ -25,9 +25,12 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const findUser = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/v1/users/currentUser`, {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${backendUrl}/api/v1/users/currentUser`,
+          {
+            withCredentials: true,
+          }
+        );
         console.log("Current User: ", response.data.user);
         dispatch({ type: "LOGIN", payload: response.data.user });
       } catch (error) {
@@ -37,6 +40,16 @@ export const AuthContextProvider = ({ children }) => {
     };
     findUser();
   }, []);
+
+  useEffect(() => {
+    if (
+      state.user &&
+      state.user.notifications &&
+      state.user.notifications.length > 0
+    ) {
+      document.title = `(${state.user.notifications.length}) Momento`;
+    }
+  }, [state.user]);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

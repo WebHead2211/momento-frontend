@@ -1,6 +1,6 @@
 .post {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 14px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -20,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 20px;
+  padding: 20px;
 
   h2 {
     font-size: 16px;
@@ -37,13 +37,18 @@
   }
 }
 
-.image {
+.image,
+.image-mobile {
   img {
     width: 100%;
     aspect-ratio: 3 / 3;
     object-fit: cover;
     box-shadow: 0 0 4px white;
   }
+}
+
+.image {
+  display: none;
 }
 
 .stats {
@@ -89,7 +94,7 @@
     width: 80%;
   }
 
-  .image {
+  .image, .image-mobile {
     img {
       border-radius: 12px;
     }
@@ -101,14 +106,25 @@
     width: 60%;
   }
 
-  .image {
+  .image, .image-mobile {
     img {
       width: 100%;
       aspect-ratio: 3 / 2;
     }
   }
 
-  .stats, .user {
+  .stats,
+  .user {
     padding: 10px 0;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .image-mobile {
+    display: none;
+  }
+
+  .image {
+    display: initial;
   }
 }

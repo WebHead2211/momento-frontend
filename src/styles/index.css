@@ -30,9 +30,9 @@ button {
   padding: 10px;
 }
 
-button:hover {
+/* button:hover {
   transform: scale(1.05);
-}
+} */
 
 .btn-primary {
   background: linear-gradient(90deg, #21ffb5 0%, #00aeef 100%);
@@ -42,12 +42,24 @@ button:hover {
   }
 }
 
+.color-primary {
+  background: linear-gradient(90deg, #21ffb5 0%, #00aeef 100%);
+  color: transparent;
+  background-clip: text;
+}
+
 .btn-secondary {
   background: linear-gradient(90deg, #ff0063 0%, #ff9800 100%);
   color: white;
   i {
     color: white;
   }
+}
+
+.color-secondary {
+  background: linear-gradient(90deg, #ff0063 0%, #ff9800 100%);
+  color: transparent;
+  background-clip: text;
 }
 
 /* COMMON */
@@ -127,4 +139,24 @@ main {
     margin-top: 0;
     margin-left: 20%;
   }
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 20px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ff0063 0%, #ff9800 100%);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #ff0063 0%, #ff9800 100%);
 }
