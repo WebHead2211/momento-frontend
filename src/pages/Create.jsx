@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { backendUrl } from "../constants";
 
@@ -12,6 +12,8 @@ export default function Create() {
   });
   const [postImage, setPostImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [postButton, setPostButton] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,23 +26,31 @@ export default function Create() {
   };
 
   const handleSubmit = async (e) => {
+    if (!user) {
+      navigate("/");
+    }
     e.preventDefault();
-
-    // Create a FormData object to send file and text data
+    setPostButton(true);
     const data = new FormData();
     data.append("caption", formData.caption);
     data.append("postImage", postImage);
 
     try {
-      const response = await axios.post(`${backendUrl}/api/v1/posts/post`, data, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${backendUrl}/api/v1/posts/post`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
       setSuccess(true);
+      navigate(`/user/${user.username}`);
       setMessage(response.data.message);
     } catch (error) {
       setSuccess(false);
       setMessage(error.response.data.error);
     }
+    setPostButton(false);
 
     // await signup(data);
     if (!success) {
@@ -51,10 +61,6 @@ export default function Create() {
   };
 
   const { user } = useAuthContext();
-
-  if (!user) {
-    return <Navigate to="/accounts/login" />;
-  }
 
   return (
     <div id="register-page-container" style={{ margin: "auto" }}>
@@ -92,8 +98,13 @@ export default function Create() {
               required
             />
           </div>
-          <button type="submit" className="btn-secondary">
-            Create Post
+          <button
+            type="submit"
+            className={`btn-secondary ${postButton ? "inactive" : ""}`}
+            id="post-button"
+          >
+            <p>{!postButton ? "Posting" : "Create Post"}</p>
+            <div></div>
           </button>
         </form>
         {message && (

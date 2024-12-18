@@ -98,8 +98,37 @@ input[type="file"]::file-selector-button:hover {
   }
 }
 
+#post-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  p {
+    all: unset;
+    position: relative;
+  }
+
+  div {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 4px dotted white;
+    border-radius: 50%;
+    animation: loader 4s linear infinite;
+  }
+}
+
+#post-button.inactive {
+  background: none;
+  background-color: gray;
+  pointer-events: none;
+
+  div {
+    display: initial;
+  }
+}
+
 .register-container-body:nth-of-type(2) {
-  /* padding: 10px; */
   height: max-content;
   display: flex;
   flex-direction: column;
