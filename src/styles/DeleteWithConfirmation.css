@@ -1,9 +1,9 @@
 .user-post:hover .delete {
-    display: initial;
+  display: initial;
 }
 
 .delete {
-    display: none;
+  display: none;
   .btn-delete {
     position: absolute;
     top: 0;
@@ -11,23 +11,43 @@
     z-index: 10;
   }
 
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-
   .btn {
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+
+  .popup {
+    background-color: black;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    pointer-events: auto;
+
+    .popup-message {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+    }
   }
 }

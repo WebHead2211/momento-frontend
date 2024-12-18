@@ -72,18 +72,11 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
 
   //Toggle like from current user to current post
   const toggleLike = async () => {
-    // await axios.post(`${backendUrl}/api/v1/users/toggleLike/${post._id}`, {
-    //   withCredentials: true,
-    // });
-    const response = await axios.get(
-      `${backendUrl}/api/v1/users/getCurrentUser`,
-      {
-        withCredentials: true,
-      }
-    );
-    // checkCurrentUserLikes(user._id);
-    // getCurrentPost(post._id);
-    console.log("COMMENT LIKED BY USER: ", response.data);
+    await axios.post(`${backendUrl}/api/v1/users/toggleLike/${post._id}`, {
+      withCredentials: true,
+    });
+    checkCurrentUserLikes(user._id);
+    getCurrentPost(post._id);
   };
 
   useEffect(() => {

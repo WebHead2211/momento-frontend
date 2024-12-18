@@ -6,6 +6,7 @@ import UserPosts from "../components/User/UserPosts";
 import "../styles/User.css";
 import Followers from "../components/User/Followers";
 import { backendUrl } from "../constants";
+import ConfirmationPopup from "../components/Other/ConfirmationPopup";
 
 export default function User() {
   const navigate = useNavigate();
@@ -56,9 +57,12 @@ export default function User() {
     } else {
       if (user) {
         try {
-          await axios.post(`${backendUrl}/api/v1/users/toggleFollow/${user.username}`, {
-            withCredentials: true,
-          });
+          await axios.post(
+            `${backendUrl}/api/v1/users/toggleFollow/${user.username}`,
+            {
+              withCredentials: true,
+            }
+          );
           setFollows((prev) => !prev);
           navigate(0);
         } catch (error) {
@@ -75,6 +79,23 @@ export default function User() {
       document.querySelector("body").style.overflow = "auto";
     }
   }, [type]);
+
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const handleDeleteClick = () => {
+    setPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    await axios.delete(`${backendUrl}/api/v1/users/deleteUser`, {
+      withCredentials: true,
+    });
+    setPopupOpen(false);
+    navigate(0);
+  };
 
   return (
     <div className="user-page">
@@ -94,11 +115,27 @@ export default function User() {
                 <h2>{user.username}</h2>
                 {isCurrentUser ? (
                   <>
+                    <ConfirmationPopup
+                      isOpen={isPopupOpen}
+                      onClose={(e) => {
+                        handleClosePopup(e);
+                      }}
+                      onConfirm={(e) => {
+                        handleConfirmDelete(e);
+                      }}
+                      type={"User"}
+                    />
                     <Link to="/editUser">
                       <button className="btn-primary btn-edit-profile">
                         Edit Profile
                       </button>
                     </Link>
+                    <button
+                      className="btn-secondary btn-edit-profile"
+                      onClick={handleDeleteClick}
+                    >
+                      Delete Profile
+                    </button>
                   </>
                 ) : (
                   <>

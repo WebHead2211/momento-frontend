@@ -115,7 +115,6 @@ const Signup = () => {
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              required
               style={{ padding: "0" }}
             />
           </div>

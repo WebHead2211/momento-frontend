@@ -43,35 +43,29 @@
   * {
     margin: 0;
   }
+}
 
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 50px;
-    /* border: 1px solid white; */
-  }
+.row-one {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.row-two {
+  display: none;
 
   ul {
+    display: flex;
     list-style-type: none;
     padding: 0;
-    display: flex;
     gap: 20px;
+    font-weight: bold;
   }
+}
 
-  .row-one {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  .row-two {
-    display: none;
-  }
-
-  .row-three {
-    display: none;
-  }
+.row-three {
+  display: none;
 }
 
 .btn-edit-profile {
@@ -113,13 +107,19 @@
 
   .user-info-details {
     gap: 20px;
-    .row-two {
-      display: initial;
-    }
-  
-    .row-three {
-      display: initial;
-    }
+  }
+
+  .row-one {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .row-two {
+    display: initial;
+  }
+
+  .row-three {
+    display: initial;
   }
 }
 
