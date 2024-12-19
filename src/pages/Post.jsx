@@ -34,7 +34,7 @@ export default function Post() {
   const addComment = async (e) => {
     try {
       e.preventDefault();
-      const response = await axios.post(
+      await axios.post(
         `${backendUrl}/api/v1/posts/newComment`,
         {
           postId: post._id,
@@ -97,7 +97,11 @@ export default function Post() {
             <div className="row-one">
               {user && (
                 <>
-                  <div>
+                  <div
+                    onClick={() => {
+                      navigate(`/user/${user.username}`);
+                    }}
+                  >
                     <img src={user.avatar} alt="" className="post-user-image" />
                     <h3>{user.username}</h3>
                   </div>

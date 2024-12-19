@@ -42,7 +42,7 @@ export default function Search() {
         navigate("/error", { state: { error: error.response.data.error } });
       }
     };
-    if (text == "") {
+    if (text === "") {
       defaultResults();
     }
   }, [text]);
