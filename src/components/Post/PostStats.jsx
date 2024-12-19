@@ -26,8 +26,10 @@ export default function PostStats({
         setLike(false);
       }
     };
-    initialLike();
-  }, [like]);
+    if (user) {
+      initialLike();
+    }
+  }, [like, user]);
 
   const toggleLike = async () => {
     await axios.post(`${backendUrl}/api/v1/users/toggleLike/${post._id}`, {

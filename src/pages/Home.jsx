@@ -4,7 +4,7 @@ import { useHomeContext } from "../hooks/useHomeContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import HomePost from "../components/Post/HomePost";
 import PostPreview from "../components/Post/PostPreview";
-import FollowSuggestions from "./FollowSuggestions";
+import FollowSuggestions from "../components/Other/FollowSuggestions";
 import "../styles/Home.css";
 
 export default function Home() {

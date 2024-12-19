@@ -89,6 +89,10 @@
   }
 }
 
+.view-comments {
+  display: none;
+}
+
 @media only screen and (min-width: 600px) {
   .post {
     width: 80%;
@@ -116,6 +120,14 @@
   .stats,
   .user {
     padding: 10px 0;
+  }
+
+  .view-comments {
+    display: initial;
+  }
+
+  .view-comments-mobile {
+    display: none;
   }
 }
 

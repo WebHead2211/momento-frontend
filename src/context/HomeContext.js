@@ -12,7 +12,6 @@ export const homeReducer = (state, action) => {
         return { ...state, end: true };
       }
       if (!action.payload.includes(state.posts[state.posts.length - 1])) {
-        // console.log("ACTION PAYLOAD: ", action.payload);
         return { ...state, posts: [...state.posts, ...action.payload] };
       } else {
         return { ...state, end: true };
@@ -37,10 +36,9 @@ export const HomeContextProvider = ({ children }) => {
     page: 0,
     end: false,
   });
-  // const [fetched, setFetched] = useState(false);
+
   const { user } = useAuthContext();
 
-  // console.log("Home context state updated: ", state);
   const getHomeFeed = async () => {
     try {
       const response = await axios.get(
@@ -68,14 +66,6 @@ export const HomeContextProvider = ({ children }) => {
       getHomeFeed();
     }
   }, [state.page]);
-
-  // useEffect(() => {
-  //   setFetched(state.end);
-  // }, [state.end]);
-
-  // useEffect(() => {
-  //   console.log("POSTS LOADER", postsLoader);
-  // }, [postsLoader]);
 
   return (
     <HomeContext.Provider value={{ ...state, dispatch }}>

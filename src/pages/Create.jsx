@@ -103,7 +103,7 @@ export default function Create() {
             className={`btn-secondary ${postButton ? "inactive" : ""}`}
             id="post-button"
           >
-            <p>{!postButton ? "Posting" : "Create Post"}</p>
+            <p>{!postButton ? "Create Post" : "Posting"}</p>
             <div></div>
           </button>
         </form>

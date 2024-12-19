@@ -20,8 +20,6 @@ export const AuthContextProvider = ({ children }) => {
     user: null,
   });
 
-  // console.log("Auth context state updated: ", state);
-
   useEffect(() => {
     const findUser = async () => {
       try {
@@ -31,7 +29,6 @@ export const AuthContextProvider = ({ children }) => {
             withCredentials: true,
           }
         );
-        console.log("Current User: ", response.data.user);
         dispatch({ type: "LOGIN", payload: response.data.user });
       } catch (error) {
         dispatch({ type: "LOGOUT" });

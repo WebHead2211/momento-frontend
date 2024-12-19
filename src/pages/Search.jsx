@@ -7,7 +7,7 @@ import { backendUrl } from "../constants";
 export default function Search() {
   const navigate = useNavigate();
   const [text, setText] = useState("");
-  const [results, setResults] = useState();
+  const [results, setResults] = useState([]);
 
   const handleChange = async (e) => {
     if (e.target.value !== " ") {
@@ -18,7 +18,9 @@ export default function Search() {
   useEffect(() => {
     const getResults = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/v1/users/search/${text}`);
+        const response = await axios.get(
+          `${backendUrl}/api/v1/users/search/${text}`
+        );
         setResults(response.data.data);
       } catch (error) {
         navigate("/error", { state: { error: error.response.data.error } });
@@ -30,6 +32,20 @@ export default function Search() {
       setResults([]);
     }
   }, [text, navigate]);
+
+  useEffect(() => {
+    const defaultResults = async () => {
+      try {
+        const response = await axios.get(`${backendUrl}/api/v1/users/search/a`);
+        setResults(response.data.data);
+      } catch (error) {
+        navigate("/error", { state: { error: error.response.data.error } });
+      }
+    };
+    if (text == "") {
+      defaultResults();
+    }
+  }, [text]);
 
   return (
     <>

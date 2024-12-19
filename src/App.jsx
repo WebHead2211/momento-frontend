@@ -3,10 +3,11 @@ import { useHomeContext } from "./hooks/useHomeContext";
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Navigate,
   Route,
   RouterProvider,
 } from "react-router-dom";
+
+//styles
 import "./styles/index.css";
 import "./styles/fonts.css";
 import "./styles/animations.css";
@@ -16,18 +17,17 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import User from "./pages/User";
+import Post from "./pages/Post";
 import EditUser from "./pages/EditUser";
 import Create from "./pages/Create";
 import Search from "./pages/Search";
+import NotFound from "./pages/NotFound";
+import CustomError from "./pages/CustomError";
 
 //layouts
 import RootLayout from "./layouts/RootLayout";
-import NotFound from "./pages/NotFound";
-import CustomError from "./pages/CustomError";
-import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
-  const { user } = useAuthContext();
   const { dispatch: homeDispatch } = useHomeContext();
   const handleScroll = () => {
     const bottom =
@@ -57,19 +57,19 @@ function App() {
           <Route path="search" element={<Search />} />
           <Route path="new" element={<Create />} />
           <Route path="/user/:username" element={<User />} />
+          <Route path="/post/:id" element={<Post />} />
           <Route path="/editUser" element={<EditUser />} />
           <Route path="/accounts">
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Route>
 
+          {/* Any unknown path */}
           <Route path="*" element={<NotFound />} />
         </Route>
       </>
     )
   );
-
-  // return <RouterProvider router={user ? router : unauthorizedRouter} />;
   return <RouterProvider router={router} />;
 }
 

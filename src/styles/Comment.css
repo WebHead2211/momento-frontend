@@ -50,7 +50,8 @@
 .comment-delete-btn {
   position: absolute;
   right: 10px;
-  display: none;
+  /* display: none; */
+  width: fit-content;
 
   i {
     font-size: 14px;

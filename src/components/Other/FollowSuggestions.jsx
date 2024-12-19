@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { backendUrl } from "../constants";
+import { backendUrl } from "../../constants";
 
 export default function FollowSuggestions() {
   const [suggestions, setSuggestions] = useState([]);

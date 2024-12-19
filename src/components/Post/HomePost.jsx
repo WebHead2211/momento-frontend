@@ -14,8 +14,6 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
   const [like, setLike] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
 
-  const { user: currentUser } = useAuthContext();
-
   //Get the user of this post
   useEffect(() => {
     const getPostUser = async () => {
@@ -201,11 +199,6 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
               </div>
               <div className="info">
                 <ul>
-                  {/* {currentPost && (
-                    <>
-                      <li>{currentPost.likes.length} likes</li>
-                    </>
-                  )} */}
                   {currentPost && (
                     <>
                       {currentPost.likes.length == 0 ? (
@@ -239,9 +232,23 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
                     <>
                       <li
                         style={{ cursor: "pointer" }}
+                        className="view-comments-mobile"
+                        onClick={() => {
+                          navigate(`/post/${currentPost._id}`);
+                        }}
+                      >
+                        View{" "}
+                        {currentPost.comments.length > 1
+                          ? currentPost.comments.length
+                          : ""}{" "}
+                        comments
+                      </li>
+                      <li
+                        style={{ cursor: "pointer" }}
                         onClick={() => {
                           setPreviewPost({ post: currentPost, user: postUser });
                         }}
+                        className="view-comments"
                       >
                         View{" "}
                         {currentPost.comments.length > 1
