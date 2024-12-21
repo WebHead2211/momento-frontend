@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import axios from "axios";
 import { backendUrl } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 export default function PostStats({
   currentPost,
@@ -14,6 +15,7 @@ export default function PostStats({
   const { user } = useAuthContext();
   const [post, setPost] = useState(currentPost);
   const input = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const initialLike = async () => {
@@ -32,11 +34,19 @@ export default function PostStats({
   }, [like, user]);
 
   const toggleLike = async () => {
-    await axios.post(`${backendUrl}/api/v1/users/toggleLike/${post._id}`, {
-      withCredentials: true,
-    });
-    getCurrentUser(user._id);
-    getCurrentPost(currentPost._id);
+    if (user) {
+      try {
+        await axios.post(`${backendUrl}/api/v1/users/toggleLike/${post._id}`, {
+          withCredentials: true,
+        });
+        getCurrentUser(user._id);
+        getCurrentPost(currentPost._id);
+      } catch (error) {
+        navigate("/error", { state: { error: error.response.data.error } });
+      }
+    } else {
+      navigate("/");
+    }
   };
 
   const getCurrentUser = async (id) => {

@@ -5,13 +5,14 @@ import { backendUrl } from "../constants";
 import "../styles/Post.css";
 import PostStats from "../components/Post/PostStats";
 import Comment from "../components/Post/Comment";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Post() {
+  const { user: currentUser } = useAuthContext();
   const [post, setPost] = useState(null);
   const [user, setUser] = useState(null);
   const [date, setDate] = useState();
   const { id } = useParams();
-
   const [comments, setComments] = useState([]);
   const [page, setPage] = useState(0);
   const [commentsFetched, setCommentsFetched] = useState(false);
@@ -32,28 +33,32 @@ export default function Post() {
     }
   };
   const addComment = async (e) => {
-    try {
-      e.preventDefault();
-      await axios.post(
-        `${backendUrl}/api/v1/posts/newComment`,
-        {
-          postId: post._id,
-          commentText: commentText,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
+    if (!currentUser) {
+      navigate("/");
+    } else {
+      try {
+        e.preventDefault();
+        await axios.post(
+          `${backendUrl}/api/v1/posts/newComment`,
+          {
+            postId: post._id,
+            commentText: commentText,
           },
-          withCredentials: true,
-        }
-      );
-      setCommentText("");
-      setCommentsFetched(false);
-      setComments([]);
-      setPage(0);
-      getComments();
-    } catch (error) {
-      navigate("/error", { state: { error: error.response.data.error } });
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        setCommentText("");
+        setCommentsFetched(false);
+        setComments([]);
+        setPage(0);
+        getComments();
+      } catch (error) {
+        navigate("/error", { state: { error: error.response.data.error } });
+      }
     }
   };
   useEffect(() => {
