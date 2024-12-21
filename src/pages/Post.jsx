@@ -64,10 +64,14 @@ export default function Post() {
 
   useEffect(() => {
     const getPost = async () => {
-      const response = await axios.get(
-        `${backendUrl}/api/v1/posts/getPost/${id}`
-      );
-      setPost(response.data.data);
+      try {
+        const response = await axios.get(
+          `${backendUrl}/api/v1/posts/getPost/${id}`
+        );
+        setPost(response.data.data);
+      } catch (error) {
+        navigate("/error", { state: { error: error.response.data.error } });
+      }
     };
     if (id) {
       getPost();

@@ -59,17 +59,18 @@
 }
 
 .comment-loader {
-  width: 100%;
-  min-height: 60px;
-  div {
-    width: 100px;
-
-    border-top: 10px dotted white;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    animation: commentLoader 3s linear infinite;
-  }
+  width: 100px;
+  height: 60px;
+  border-top: 10px dotted white;
+  margin: auto;
+/* 
+  width: 100px;
+  
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%); */
+  animation: commentLoader 3s linear infinite;
 }
 
 @keyframes commentLoader {

@@ -126,17 +126,39 @@ main {
   }
 }
 
+footer {
+  padding: 20px;
+  display: flex;
+  background: linear-gradient(90deg, #21ffb5 0%, #00aeef 100%);
+  color: black;
+  justify-content: center;
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+}
+
+
 @media only screen and (min-width: 768px) {
   main {
     margin-top: 0;
     margin-left: 10%;
     height: fit-content;
   }
+
+  footer {
+    width: 90%;
+    margin-left: 10%;
+  }
 }
 
 @media only screen and (min-width: 1280px) {
   main {
     margin-top: 0;
+    margin-left: 20%;
+  }
+
+  footer {
+    width: 80%;
     margin-left: 20%;
   }
 }
@@ -160,3 +182,4 @@ main {
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(90deg, #ff0063 0%, #ff9800 100%);
 }
+

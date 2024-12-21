@@ -60,9 +60,7 @@ export default function Comment({
     <div className="comment-container">
       {!commenter ? (
         <>
-          <div className="comment-loader">
-            <div></div>
-          </div>
+          <div className="comment-loader"></div>
         </>
       ) : (
         <>

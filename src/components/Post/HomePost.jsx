@@ -114,6 +114,7 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
 
     lastTapTime = currentTime;
   };
+
   return (
     <>
       {postUser && (
@@ -147,25 +148,32 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
               />
             </div>
             <div className="image">
-              <img
-                src={post.url}
-                alt=""
-                onClick={() => {
-                  if (clickTimer) return;
-                  clickTimer = setTimeout(() => {
-                    setPreviewPost({ post: currentPost, user: postUser });
-                    clickTimer = null;
-                  }, 250);
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
                 }}
-                onDoubleClick={() => {
-                  if (clickTimer) {
-                    clearTimeout(clickTimer);
-                    clickTimer = null;
-                  }
-                  toggleLike();
-                }}
-                onTouchEnd={handleTap}
-              />
+                to={`/post/${post._id}`}
+              >
+                <img
+                  src={post.url}
+                  alt=""
+                  onClick={() => {
+                    if (clickTimer) return;
+                    clickTimer = setTimeout(() => {
+                      setPreviewPost({ post: currentPost, user: postUser });
+                      clickTimer = null;
+                    }, 250);
+                  }}
+                  onDoubleClick={() => {
+                    if (clickTimer) {
+                      clearTimeout(clickTimer);
+                      clickTimer = null;
+                    }
+                    toggleLike();
+                  }}
+                  onTouchEnd={handleTap}
+                />
+              </Link>
             </div>
             <div className="stats">
               <div className="icons">
@@ -201,13 +209,13 @@ export default function HomePost({ post, setPreviewPost, previewPost }) {
                 <ul>
                   {currentPost && (
                     <>
-                      {currentPost.likes.length == 0 ? (
+                      {currentPost.likes.length === 0 ? (
                         <>
                           <li>0 likes</li>
                         </>
                       ) : (
                         <>
-                          {currentPost.likes.length == 1 ? (
+                          {currentPost.likes.length === 1 ? (
                             <>
                               <li>1 like</li>
                             </>

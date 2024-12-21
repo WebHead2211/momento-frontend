@@ -7,7 +7,9 @@
   }
 
   .post-page-info {
-    padding: 20px 0;
+    padding: 20px 0 0;
+    display: flex;
+    flex-direction: column;
 
     .comments-error {
       margin: 0;
@@ -44,10 +46,12 @@
     .comments-container {
       display: flex;
       flex-direction: column;
+      flex-grow: 1;
+      padding-bottom: 20px;
 
       button:not(.comment-delete-btn) {
         width: 80%;
-        margin: auto;
+        margin: 0 auto;
         text-align: center;
         border-radius: 12px;
       }
@@ -65,16 +69,22 @@
     }
 
     .post-page-info {
-      width: fit-content;
-      min-width: 20vw;
+      width: 40vw;
+      height: 100vh;
       border: 1px solid rgba(255, 255, 255, 0.4);
-      margin: 10px;
-      border-radius: 12px;
 
       .comments-container {
         height: 600px;
         overflow-y: auto;
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .post-page-container {
+    .post-page-info {
+      width: 30vw;
     }
   }
 }
